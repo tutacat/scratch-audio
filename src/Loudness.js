@@ -37,7 +37,7 @@ class Loudness {
         // The microphone has not been set up, so try to connect to it
         if (!this.mic && !this.connectingToMic) {
             this.connectingToMic = true; // prevent multiple connection attempts
-            navigator.mediaDevices.getUserMedia({audio: true}).then(stream => {
+            navigator.mediaDevices.getUserMedia({audio: {echoCancellation: false}}).then(stream => {
                 this.audioStream = stream;
                 this.mic = this.audioContext.createMediaStreamSource(stream);
                 this.analyser = this.audioContext.createAnalyser();
